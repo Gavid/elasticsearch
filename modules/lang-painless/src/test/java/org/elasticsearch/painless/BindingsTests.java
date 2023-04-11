@@ -318,4 +318,27 @@ public class BindingsTests extends ScriptTestCase {
          * because the constant is effectively final.
          */
     }
+
+    public void testClassMethodCompileSum() {
+        String script = "int normalize(int x) { \n" +
+            "    int[] b = new int[] {1, 2, 3, 4, 5};\n" +
+            "    def ret = -1;\n" +
+            "    def test = x %10;\n" +
+            "    if (test == b[0]) {\n" +
+            "        ret = b[0];\n" +
+            "    } else if (test > b[0] && test <= b[3]) {\n" +
+            "        ret = b[2];\n" +
+            "    } else {\n" +
+            "        ret = b[4];\n" +
+            "    }\n" +
+            "    return ret;\n" +
+            "}\n" +
+            "def total = 0;\n" +
+            "int[] b1 = new int[] {1, 2, 3, 4, 5};" +
+            "for (def i = 0; i < 5; i++) {\n" +
+            "    total += normalize(b1[i]);\n" +
+            "}\n" +
+            "return total;";
+        scriptEngine.compile("demo", script, BindingsTestScript.CONTEXT, Collections.emptyMap());
+    }
 }
