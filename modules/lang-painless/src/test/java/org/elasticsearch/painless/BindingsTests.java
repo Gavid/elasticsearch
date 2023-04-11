@@ -319,6 +319,20 @@ public class BindingsTests extends ScriptTestCase {
          */
     }
 
+    /**
+     * 运行该方法需设置虚拟机参数。如下：
+         -ea
+         -Djava.locale.providers=SPI,COMPAT
+         --add-opens=java.base/java.security.cert=ALL-UNNAMED
+         --add-opens=java.base/java.nio.channels=ALL-UNNAMED
+         --add-opens=java.base/java.net=ALL-UNNAMED
+         --add-opens=java.base/javax.net.ssl=ALL-UNNAMED
+         --add-opens=java.base/java.nio.file=ALL-UNNAMED
+         --add-opens=java.base/java.time=ALL-UNNAMED
+         --add-opens=java.base/java.lang=ALL-UNNAMED
+         --add-opens=java.management/java.lang.management=ALL-UNNAMED
+         -Dtests.security.manager=false
+     */
     public void testClassMethodCompileSum() {
         String script = "int normalize(int x) { \n" +
             "    int[] b = new int[] {1, 2, 3, 4, 5};\n" +
